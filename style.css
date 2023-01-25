@@ -33,14 +33,33 @@ body {
     width: 100%;
     background: radial-gradient(
       800px circle at var(--mouse-x) var(--mouse-y), 
-      rgba(255, 255, 255, 0.334),
+      rgba(211, 195, 210, 0.31),
       transparent 40%
     );
     z-index: 3;
     mix-blend-mode: color-dodge;
 }
 
+.grid::after {
+    border-radius: inherit;
+    content: "";
+    height: 100%;
+    left: 0px;
+    opacity: 1;
+    position: absolute;
+    top: 0px;
+    transition: opacity 500ms;
+    width: 100%;
+    background: radial-gradient(
+        130vw circle, 
+        rgb(236, 233, 235),
+      transparent 40%
+    );
+    z-index: 2;
+    mix-blend-mode: color-dodge;
+}
+
 .tile {
     transition: background-color 0.25s ease;
-    outline: 1px solid rgba(255, 255, 255, 0.01);
+    outline: 1px solid rgba(246, 144, 232, 0.01);
 }
