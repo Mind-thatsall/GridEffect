@@ -1,65 +1,108 @@
-*, *::after, *::before {
-    box-sizing: border-box;
+:root {
+    --translate: 100px;
+    --translate2: 100px;
+}
+
+*,
+*::after,
+*::before {
+	box-sizing: border-box;
 }
 
 body {
-    margin: 0;
-    background-color: black;
+	margin: 0;
+	background-color: black;
+	overflow: hidden;
 }
 
 .container {
-    position: relative;
-    width: 100vw;
-    height: 100vh;
-}
-
-.grid {
-    display: grid;
-    grid-template-columns: repeat(var(--columns), 1fr);
-    grid-template-rows: repeat(var(--rows), 1fr);
-    width: 100vw;
-    height: 100vh;
-}
-
-.grid::before {
-    border-radius: inherit;
-    content: "";
-    height: 100%;
-    left: 0px;
-    opacity: 1;
-    position: absolute;
-    top: 0px;
-    transition: opacity 500ms;
-    width: 100%;
-    background: radial-gradient(
-      800px circle at var(--mouse-x) var(--mouse-y), 
-      rgba(211, 195, 210, 0.31),
-      transparent 40%
-    );
-    z-index: 3;
-    mix-blend-mode: color-dodge;
-}
-
-.grid::after {
-    border-radius: inherit;
-    content: "";
-    height: 100%;
-    left: 0px;
-    opacity: 1;
-    position: absolute;
-    top: 0px;
-    transition: opacity 500ms;
-    width: 100%;
-    background: radial-gradient(
-        130vw circle, 
-        rgb(236, 233, 235),
-      transparent 40%
-    );
-    z-index: 2;
-    mix-blend-mode: color-dodge;
+	position: relative;
+	width: 100vw;
+	height: 100vh;
 }
 
 .tile {
-    transition: background-color 0.25s ease;
-    outline: 1px solid rgba(246, 144, 232, 0.01);
+	transition: background-color 0.25s ease;
+	outline: 1px solid rgba(150, 121, 181, 0.05);
+}
+
+.wrapper {
+	height: 100vh;
+	width: 100vw;
+	position: absolute;
+	top: 0;
+	backdrop-filter: blur(100px);
+	z-index: -1;
+}
+
+.grid {
+	display: grid;
+	grid-template-columns: repeat(var(--columns), 1fr);
+	grid-template-rows: repeat(var(--rows), 1fr);
+	width: 100vw;
+	height: 100vh;
+	position: absolute;
+	top: 0;
+    pointer-events: visible;
+}
+
+.grid::before {
+	border-radius: inherit;
+	content: "";
+	height: 100%;
+	left: 0px;
+	opacity: var(--opacity);
+	position: absolute;
+	top: 0px;
+	transition: opacity 500ms;
+	width: 100%;
+	background: radial-gradient(
+		400px circle at var(--mouse-x) var(--mouse-y),
+		rgba(211, 195, 210, 0.5),
+		transparent 40%
+	);
+	z-index: 3;
+	mix-blend-mode: color-dodge;
+}
+
+.circle1 {
+	position: absolute;
+	width: 1200px;
+	height: 150px;
+	background-color: rgb(140, 104, 178);
+	border-radius: 50%;
+	filter: blur(600px);
+	bottom: -150px;
+	left: -100px;
+	animation: fly 30s linear infinite alternate-reverse;
+	z-index: -1;
+}
+
+.circle2 {
+	position: absolute;
+	width: 1200px;
+	height: 150px;
+	background-color: rgb(140, 104, 178);
+	border-radius: 50%;
+	filter: blur(600px);
+	bottom: -150px;
+	right: -100px;
+	animation: flyPlus 30s linear infinite alternate-reverse;
+	z-index: -1;
+}
+
+@keyframes fly {
+	100% {
+		transform: rotate(1turn) translate(var(--translate)) rotate(-1turn);
+	}
+}
+
+@keyframes flyPlus {
+	100% {
+		transform: rotate(1turn) translate(var(--translate2)) rotate(-1turn);
+	}
+}
+
+.bigtitle {
+	color: white;
 }
